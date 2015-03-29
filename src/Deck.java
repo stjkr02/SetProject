@@ -7,7 +7,7 @@ public class Deck {
   // Implement the rest of this class yourself
   
   public Deck(String filename) {
-    cards = new ArrayList<Card>(81);
+    ArrayList<Card> cards = new ArrayList<>(81);
     
     try {
       String line;
@@ -35,7 +35,7 @@ public class Deck {
         int shape = Integer.parseInt(tokenizer.nextToken());
         
         cards.add(new Card(quantity, color, shading, shape));
-        nextCardIndex = 0;
+        int nextCardIndex = 0;
       }
     }
     catch(Exception e) {
