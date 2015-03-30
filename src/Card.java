@@ -12,12 +12,10 @@ public class Card {
   }
   
   private int modder(int givenValue){
-    int value = givenValue % 3;
+    int value = givenValue;
     
-    if (value == 0)
-      return 3;
-    else if (value < 0)
-      return ((value + 3) % 3);
+    if (value < 1 || value > 3)
+      return ((( value % 3) + 3) % 3) + 1;
     else 
       return value;
   }
