@@ -50,7 +50,17 @@ public class CardTest extends TestCase {
     assertEquals(2, card2.getColor());
     assertEquals(3, card2.getShading());
     assertEquals(1, card2.getShape());
-    assertEquals("1GSO", card2.toString());                      
+    assertEquals("1GSO", card2.toString());
+    
+    //Negative -> 0
+    Card card3 = new Card(-300, -300, -300, -300);
+    
+    assertEquals(3, card3.getQuantity());
+    assertEquals(3, card3.getColor());
+    assertEquals(3, card3.getShading());
+    assertEquals(3, card3.getShape());
+    assertEquals("3PSS", card3.toString());
+    
   }
   
 }
