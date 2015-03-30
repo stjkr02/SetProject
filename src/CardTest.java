@@ -16,20 +16,41 @@ public class CardTest extends TestCase {
   public void testGetMethodsBasicCard() {
     Card card = new Card(1, 1, 1, 1);
   
-    assertEquals(card.getQuantity(), 1);
-    assertEquals(card.getColor(), 1);
-    assertEquals(card.getShading(), 1);
-    assertEquals(card.getShape(), 1);
-    assertEquals(card.toString(), "1ROO");
+    assertEquals(1, card.getQuantity());
+    assertEquals(1, card.getColor());
+    assertEquals(1, card.getShading());
+    assertEquals(1, card.getShape());
+    assertEquals("1ROO", card.toString());
   }
   
   public void testModder() {
-    Card card = new Card(1, 1, 1, 1);
+    //All Zeros
+    Card card = new Card(0, 0, 0, 0);
+   
+    assertEquals(3, card.getQuantity());
+    assertEquals(3, card.getColor());
+    assertEquals(3, card.getShading());
+    assertEquals(3, card.getShape());
+    assertEquals("3PSS", card.toString());
     
-    assertEquals(card.getQuantity(), 1);
-    assertEquals(card.getColor(), 1);
-    assertEquals(card.getShading(), 1);
-    assertEquals(card.getShape(), 1);
-    assertEquals(card.toString(), null);
+    
+    //Positive Numbers
+    Card card1 = new Card(238, 208, 181, 28);
+    
+    assertEquals(1, card1.getQuantity());
+    assertEquals(1, card1.getColor());
+    assertEquals(1, card1.getShading());
+    assertEquals(1, card1.getShape());
+    assertEquals("1ROO", card1.toString());
+    
+    //Negative Numbers
+    Card card2 = new Card(-206, -259,-96, -170); 
+    
+    assertEquals(1, card2.getQuantity());
+    assertEquals(2, card2.getColor());
+    assertEquals(3, card2.getShading());
+    assertEquals(1, card2.getShape());
+    assertEquals("1GSO", card2.toString());                      
   }
+  
 }

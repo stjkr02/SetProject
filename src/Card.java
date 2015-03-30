@@ -5,10 +5,21 @@ public class Card {
   private int shape;
   
   public Card(int givenQuantity, int givenColor, int givenShading, int givenShape) {
-    quantity = givenQuantity;
-    color = givenColor;
-    shading = givenShading;
-    shape = givenShape;
+    quantity = modder(givenQuantity);
+    color = modder(givenColor);
+    shading = modder(givenShading);
+    shape = modder(givenShape);
+  }
+  
+  private int modder(int givenValue){
+    int value = givenValue % 3;
+    
+    if (value == 0)
+      return 3;
+    else if (value < 0)
+      return ((value + 3) % 3);
+    else 
+      return value;
   }
   
   public int getQuantity() {
