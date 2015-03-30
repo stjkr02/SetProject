@@ -14,13 +14,22 @@ public class CardTest extends TestCase {
    * one will be called when running JUnit over this class.)
    */
   public void testGetMethodsBasicCard() {
-  Card card = new Card(1, 1, 1, 1);
+    Card card = new Card(1, 1, 1, 1);
   
-  assertEquals(card.getQuantity(), 1);
-  assertEquals(card.getColor(), 1);
-  assertEquals(card.getShading(), 1);
-  assertEquals(card.getShape(), 1);
-  assertEquals(card.toString(), null);
+    assertEquals(card.getQuantity(), 1);
+    assertEquals(card.getColor(), 1);
+    assertEquals(card.getShading(), 1);
+    assertEquals(card.getShape(), 1);
+    assertEquals(card.toString(), "1ROO");
   }
   
+  public void testModder() {
+    Card card = new Card(1, 1, 1, 1);
+    
+    assertEquals(card.getQuantity(), 1);
+    assertEquals(card.getColor(), 1);
+    assertEquals(card.getShading(), 1);
+    assertEquals(card.getShape(), 1);
+    assertEquals(card.toString(), null);
+  }
 }

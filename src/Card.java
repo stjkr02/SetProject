@@ -32,7 +32,33 @@ public class Card {
   }
   
   public String toString() {
-    return null;
+    String name = "" + quantity;
+    
+    //Color
+    if (color == 1)
+      name += "R";
+    else if (color == 2)
+      name += "G";
+    else if (color == 3)
+      name += "P";
+    
+    //Shading
+    if (shading == 1)
+      name += "O";
+    else if (shading == 2)
+      name += "T";
+    else if (shading == 3)
+      name += "S";
+    
+    //Shape
+    if (shape == 1)
+      name += "O";
+    else if (shape == 2)
+      name += "D";
+    else if (shape == 3)
+      name += "S";  
+    
+    return name;
   }
   
   public boolean equals(Object obj) {
