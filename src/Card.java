@@ -37,7 +37,52 @@ public class Card {
   }
   
   public boolean isSet(Card card1, Card card2){
-    return false;
+    boolean checker = false;
+   
+    //Make an array for the cards and the sums.
+    Card[] cards = {this, card1, card2}; 
+    int[] sums = {0, 0, 0, 0};
+    
+    //Iterate through the values of the atributes of the cards to make sure they form sets, if they do not, the 
+    //program will return false without wasting time on the remaining atributes.
+    
+    //Check Quantity
+    for ( Card i : cards)
+      sums[0] += i.getQuantity();
+      
+    if (sums[0] % 3 != 0) {
+      return checker;
+    }
+      
+    //Check Color
+    for ( Card i : cards)
+      sums[1] += i.getColor();
+      
+    if (sums[1] % 3 != 0) {
+      return checker;
+    }
+      
+    //Check Shading
+    for ( Card i : cards)
+      sums[2] += i.getShading();
+        
+    if (sums[2] % 3 != 0) {
+      return checker;
+    }
+
+    
+      //Check Shape
+    for ( Card i : cards)
+      sums[3] += i.getShape();
+      
+    if(sums[3] % 3 != 0){
+      return checker;
+    }
+      
+    //Awesome, if the method got down to this line without returning, then the three cards are a set.
+    checker = true;
+            
+    return checker;
   }
   
   public String toString() {

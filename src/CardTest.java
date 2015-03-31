@@ -60,7 +60,72 @@ public class CardTest extends TestCase {
     assertEquals(1, card3.getShading());
     assertEquals(1, card3.getShape());
     assertEquals("1ROO", card3.toString());
-    
   }
+  
+  public void testIsSetSimple() {
+    //All atributes of each card are the same
+    Card card = new Card(1, 1, 1, 1);
+    Card card1 = new Card(1, 1, 1, 1);
+    Card card2 = new Card(1, 1, 1, 1);
+    
+    assertEquals(true, card.isSet(card1, card2));
+    
+    
+    //All atributes of each card are different
+    card = new Card(1, 1, 1, 1);
+    card1 = new Card(2, 2, 2, 2);
+    card2 = new Card(3, 3, 3, 3);
+    
+    assertEquals(true, card.isSet(card1, card2));
+  
+  
+    //At least one of the cards will not make a set
+    card = new Card(1, 1, 1, 1);
+    card1 = new Card(1, 2, 3, 1);
+    card2 = new Card(3, 3, 3, 3);
+    
+    assertEquals(false, card.isSet(card1, card2));
+  }
+  
+  public void testIsSetComplex() {
+    //Values are all over the place, but will make set.
+    Card card = new Card(1, 1, 3, 2);
+    Card card1 = new Card(2, 3, 1, 2);
+    Card card2 = new Card(3, 2, 2, 2);
+    
+    assertEquals(true, card.isSet(card1, card2));
+
+    
+    //All but one atribute are different
+    card = new Card(1, 1, 1, 1);
+    card1 = new Card(2, 1, 1, 1);
+    card2 = new Card(3, 1, 1, 1);
+    
+    assertEquals(true, card.isSet(card1, card2));
+    
+    
+    //Two different, Two same
+    card = new Card(1, 1, 2, 3);
+    card1 = new Card(1, 1, 1, 2);
+    card2 = new Card(1, 1, 3, 1);
+    
+    assertEquals(true, card.isSet(card1, card2));
+    
+    
+    //Two cards seem to make a set, but the third breaks it
+    card = new Card(1, 1, 1, 1);
+    card1 = new Card(2, 2, 2, 2);
+    card2 = new Card(2, 3, 3, 3);
+    
+    assertEquals(false, card.isSet(card1, card2));
+    
+    //Two cards seem to make a set, but the third breaks it, part 2
+    card = new Card(1, 1, 1, 3);
+    card1 = new Card(2, 2, 2, 2);
+    card2 = new Card(3, 3, 3, 2);
+    
+    assertEquals(false, card.isSet(card1, card2));
+  }
+  
   
 }
