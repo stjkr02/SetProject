@@ -34,7 +34,20 @@ public class DeckTest extends TestCase {
     
     //Make sure that nothing is left
     assertFalse(deck.hasNext());
+
+    //Assert that the getNext() method will return null if hasNext() returns false
+    assertEquals(null, deck.getNext());  
   }
+  
+  
+  public void testEmptyDataFile() {
+    Deck deck = new Deck("empty.dat");
+    
+    //Nothing should be in the deck
+    assertFalse(deck.hasNext());
+    assertEquals(null, deck.getNext());
+  }
+   
   
   public void testCountOfEmptyConstructor() {
     Deck deck = new Deck();
@@ -47,7 +60,8 @@ public class DeckTest extends TestCase {
     
     assertEquals(81, counter);
   }
-    
+  
+  
   public void testOutputOfEmptyConstructor() {
     Deck deck = new Deck();
     
