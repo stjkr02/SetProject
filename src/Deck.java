@@ -4,10 +4,14 @@ import java.util.StringTokenizer;
 import java.util.ArrayList;
 
 public class Deck {
-  // Implement the rest of this class yourself
+  ArrayList<Card> cards = new ArrayList<>(81);
+  int nextCardIndex = 0;
+  
+  public Deck() {
+    
+  }
   
   public Deck(String filename) {
-    ArrayList<Card> cards = new ArrayList<>(81);
     
     try {
       String line;
@@ -35,11 +39,27 @@ public class Deck {
         int shape = Integer.parseInt(tokenizer.nextToken());
         
         cards.add(new Card(quantity, color, shading, shape));
-        int nextCardIndex = 0;
+        
       }
     }
     catch(Exception e) {
       throw new RuntimeException("Error while reading file: " + e.toString());
     }
   }
+  
+  public boolean hasNext() {
+    if (nextCardIndex < cards.size())
+      return true;
+    else
+      return false;
+  }
+  
+  public Card getNext() {
+    if (hasNext() == true) {
+      nextCardIndex ++;
+      return cards.get(nextCardIndex - 1);
+    }
+    else 
+      return null;
+  } 
 }
