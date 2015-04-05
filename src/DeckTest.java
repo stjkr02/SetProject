@@ -36,8 +36,24 @@ public class DeckTest extends TestCase {
     assertFalse(deck.hasNext());
   }
   
-  public void testEmptyConstructor() {
-    //Deck deck = new Deck();
-  
+  public void testCountOfEmptyConstructor() {
+    Deck deck = new Deck();
+    int counter = 0;
+    
+    while(deck.hasNext() == true) {
+      deck.getNext();
+      counter ++;  
+    }
+    
+    assertEquals(81, counter);
   }
+    
+  public void testOutputOfEmptyConstructor() {
+    Deck deck = new Deck();
+    
+    while(deck.hasNext() == true) {
+      System.out.println(deck.getNext());
+    }
+  }
+    
 }
