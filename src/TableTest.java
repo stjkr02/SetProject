@@ -13,7 +13,22 @@ public class TableTest extends TestCase {
    * many "testSomething" methods in this class as you wish, and each
    * one will be called when running JUnit over this class.)
    */
-  public void testX() {
+  public void testBareClass() {
+    Table table = new Table();
+    
+    assertEquals(null, table.getCard(0));
+    assertEquals(0, table.numCards());
+    assertEquals(0, table.numSets());
   }
   
+  public void testOneCard() {
+    Table table = new Table();
+    Card card = new Card(1, 1, 1, 1);
+    
+    table.add(card);
+    
+    assertEquals(card, table.getCard(0));
+    assertEquals(1, table.numCards());
+    assertEquals(0, table.numSets());
+  }
 }
