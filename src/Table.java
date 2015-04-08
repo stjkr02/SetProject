@@ -21,6 +21,7 @@ public class Table {
   }
   
   
+  
   public int numCards() {
     TableNode temp = head;
     int count = 0;
@@ -34,10 +35,16 @@ public class Table {
   
   
   public Card getCard(int givenIndex) {
-    if(head != null) 
-      return head.getCard();
-    else
+    if (head == null)
       return null;
+    
+    int i = 0;
+    TableNode temp = head;
+    while(i < givenIndex) {
+      temp = temp.getNext();
+      i++;
+    }
+    return temp.getCard();
   }
   
   
