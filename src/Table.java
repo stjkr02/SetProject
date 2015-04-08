@@ -35,7 +35,7 @@ public class Table {
   
   
   public Card getCard(int givenIndex) {
-    if (head == null)
+    if (head == null || givenIndex > (this.numCards() -1) || givenIndex < 0)
       return null;
     
     int i = 0;
