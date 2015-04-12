@@ -16,11 +16,60 @@ public class Table {
     }
   }
   
-  public void removeSet(Card card0, Card card1, Card card2) {
-    //Check if they form a set
-    //Check if cards are on the table, mark their index
-    //Then remove the cards
-    //Need a helper method to remove the nodes.
+  public void removeSet(Card givenCard, Card givenCard1, Card givenCard2) {
+    Card card = givenCard;
+    Card card1 = givenCard1;
+    Card card2 = givenCard2;
+    
+    //Check if the given cards form a set.
+    //if (card.isSet(card1, card2) != true)
+      //return;
+    
+    //Check if the cards are on the table.
+    if (allCardsPresent(card, card1, card2) != true)
+      return;
+    
+    //Remove the cards by traversing the list
+    TableNode prev = head;
+    TableNode curr = prev.getNext();
+    
+    while ( curr.getNext() != null ) {
+      //Check if the current node's card is marked to be removed
+      Card temp = curr.getCard();
+      if (temp == card || temp == card1 || temp == card2) {
+        //Check if it will be a head insertion
+        if (prev == head) 
+          head = curr.getNext();
+        else
+          prev.setNext(curr.getNext());
+      }
+      //After checking, move each node reference down
+      prev = curr.getNext();
+      curr = prev.getNext();
+    }
+  }
+  
+  private boolean allCardsPresent(Card givenCard, Card givenCard1, Card givenCard2) {
+    Card card = givenCard;
+    Card card1 = givenCard1;
+    Card card2 = givenCard2;
+    
+    int count = 0;
+    
+    TableNode node = head;
+    while (node.getNext() != null) {
+      Card temp = node.getCard();
+      
+      if (temp.equals(card) == true || temp.equals(card1) == true || temp.equals(card2) == true )
+        count++;
+      
+      node = node.getNext();
+    }
+    
+    if (count == 3)
+      return true;
+    else
+      return false;
   }
   
   

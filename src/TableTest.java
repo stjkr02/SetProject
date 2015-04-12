@@ -79,6 +79,7 @@ public class TableTest extends TestCase {
     table.add(card1);
     table.add(card2);
     
+    //Assert that there is only one set in this simple table.
     assertEquals(1, table.numSets());  
   }
   
@@ -89,9 +90,46 @@ public class TableTest extends TestCase {
     while (deck.hasNext() == true)
       table.add(deck.getNext());
     
+    //Assert that there are 8 cards, but only 3 sets on the table.
     assertEquals(8 , table.numCards());
     assertEquals(3 , table.numSets());
   }
   
-
+  public void testAllCardsPresentHelperMethod() {
+    Table table = new Table();
+    Deck deck = new Deck("3card.dat");
+    
+    while (deck.hasNext() == true) 
+      table.add(deck.getNext());
+    
+    //Cards to remove
+    Card card = new Card(1, 2, 2, 1);
+    Card card1 = new Card(2, 3, 2, 2);
+    Card card2 = new Card(3, 1, 2, 3);
+    
+    table.removeSet(card, card1, card2);
+    
+    //Asert that the number of cards is 3, as nothing should have been removed due to the cards not being present.
+    assertEquals(3, table.numCards());
+  }
+  
+  public void testRemoveSetSimple() {
+    Table table = new Table();
+    Deck deck = new Deck("3card.dat");
+    
+    while (deck.hasNext() == true) 
+      table.add(deck.getNext());
+    
+    //Cards to remove
+    Card card = new Card(1, 1, 1, 1);
+    Card card1 = new Card(2, 2, 2, 2);
+    Card card2 = new Card(3, 3, 3, 3);
+    
+    //Make sure there is a set
+    assertEquals(1, table.numSets());
+    //Remove that set
+    table.removeSet(card, card1, card2);
+    //Assert that nothing is on the table
+    assertEquals(0, table.numCards());
+  }
 }
