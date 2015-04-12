@@ -17,9 +17,11 @@ public class Table {
   }
   
   public void removeSet(Card card0, Card card1, Card card2) {
-    
+    //Check if they form a set
+    //Check if cards are on the table, mark their index
+    //Then remove the cards
+    //Need a helper method to remove the nodes.
   }
-  
   
   
   public int numCards() {
@@ -49,8 +51,38 @@ public class Table {
   
   
   public int numSets() {
-    return 0;
-  }
-  
-  
+    int count = 0;
+    
+    //Initialize the first node and then iterate from the next node until the end of the linked list
+    TableNode n1 = head;
+    while ( n1 != null ) {
+      
+      //Initialize the second node to be node following the first, and then iterate through the end.
+      TableNode n2 = n1.getNext();
+      while ( n2 != null) {
+        
+        //Same as above really.
+        TableNode n3 = n2.getNext();
+        while( n3 != null) {
+          //Make temporary card references to the cards referenced by each node
+          Card temp = n1.getCard();
+          Card temp2 = n2.getCard();
+          Card temp3 = n3.getCard();
+          
+          //If those 3 particular referenced cards form a set, increment the count by 1.
+          if (temp.isSet(temp2, temp3) == true)
+            count++;
+          
+          //End of the while loop, get the next node.
+          n3 = n3.getNext();
+        }
+        //End of the while loop, get the next node.
+        n2 = n2.getNext();
+      }
+      //End of the while loop, get the next node.
+      n1 = n1.getNext();
+    }
+    //Return the number of sets!
+    return count;
+  } 
 }

@@ -66,6 +66,32 @@ public class TableTest extends TestCase {
     assertEquals(null, table.getCard(5));
     assertEquals(null, table.getCard(-10));
   }
-                 
+  
+  
+  public void testNumSetsSimple() {
+    Table table = new Table();
+   
+    Card card = new Card(1, 1, 1, 1);
+    Card card1 = new Card(2, 2, 2, 2);
+    Card card2 = new Card(3, 3, 3, 3);
+    
+    table.add(card);
+    table.add(card1);
+    table.add(card2);
+    
+    assertEquals(1, table.numSets());  
+  }
+  
+  public void testNumSetsComplex() {
+    Table table = new Table();
+    Deck deck = new Deck("numSetsComplex.dat");
+    
+    while (deck.hasNext() == true)
+      table.add(deck.getNext());
+    
+    assertEquals(8 , table.numCards());
+    assertEquals(3 , table.numSets());
+  }
+  
 
 }
