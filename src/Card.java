@@ -114,7 +114,7 @@ public class Card {
     
     return name;
   }
-  @Override
+  //@Override
   public boolean equals(Object obj) {
     Card that = (Card)obj;
     

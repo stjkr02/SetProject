@@ -154,5 +154,25 @@ public class TableTest extends TestCase {
     //But to no avail
     assertEquals(5, table.numCards());
   }
-  
+
+  public void testRemoveSet_NotASet() {
+    Table table = new Table();
+    Deck deck = new Deck("3card.dat");
+    
+    while (deck.hasNext() == true) 
+      table.add(deck.getNext());
+    
+    //Cards to remove
+    Card card = new Card(1, 1, 1, 1);
+    Card card1 = new Card(2, 3, 2, 2); //This one throws the 'set' off
+    Card card2 = new Card(3, 3, 3, 3);
+    
+    //Make sure there is a not set
+    assertEquals(false, card.isSet(card2, card1));
+    //Attempt to remove the 'set'
+    table.removeSet(card, card1, card2);
+    //Assert that everything is still on the table.
+    assertEquals(3, table.numCards());
+  }
 }
+  

@@ -17,16 +17,12 @@ public class Table {
   }
   
   public void removeSet(Card givenCard, Card givenCard1, Card givenCard2) {
-    String card = givenCard.toString();
-    String card1 = givenCard1.toString();
-    String card2 = givenCard2.toString();
-    
     //Check if the given cards form a set.
     if (givenCard.isSet(givenCard1, givenCard2) != true)
       return;
     
     //Check if the cards are on the table.
-    if (allCardsPresent(card, card1, card2) != true)
+    if (allCardsPresent(givenCard, givenCard1, givenCard2) != true)
       return;
     
     //Remove the cards by traversing the list
@@ -35,8 +31,8 @@ public class Table {
     
     while ( curr != null ) {
       //Check if the current node's card is marked to be removed
-      String temp = curr.getCard().toString();
-      if ( temp.equals(card) == true || temp.equals(card1) == true || temp.equals(card2) == true) {
+      Card temp = curr.getCard();
+      if ( temp.equals(givenCard) == true || temp.equals(givenCard1) == true || temp.equals(givenCard2) == true) {
         //Check if it will be a head insertion
         if (prev == null) {
           curr = curr.getNext();
@@ -55,16 +51,16 @@ public class Table {
     }
   }
   
-  private boolean allCardsPresent(String givenCard, String givenCard1, String givenCard2) {
-    String card = givenCard;
-    String card1 = givenCard1;
-    String card2 = givenCard2;
+  private boolean allCardsPresent(Card givenCard, Card givenCard1, Card givenCard2) {
+    Card card = givenCard;
+    Card card1 = givenCard1;
+    Card card2 = givenCard2;
     
     int count = 0;
     
     TableNode node = head;
     while (node != null) {
-      String temp = node.getCard().toString();
+      Card temp = node.getCard();
       if ( temp.equals(card) == true || temp.equals(card1) == true || temp.equals(card2) == true)
         count++;
       
