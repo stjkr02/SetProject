@@ -17,50 +17,55 @@ public class Table {
   }
   
   public void removeSet(Card givenCard, Card givenCard1, Card givenCard2) {
-    Card card = givenCard;
-    Card card1 = givenCard1;
-    Card card2 = givenCard2;
+    String card = givenCard.toString();
+    String card1 = givenCard1.toString();
+    String card2 = givenCard2.toString();
     
     //Check if the given cards form a set.
-    //if (card.isSet(card1, card2) != true)
-      //return;
+    if (givenCard.isSet(givenCard1, givenCard2) != true)
+      return;
     
     //Check if the cards are on the table.
     if (allCardsPresent(card, card1, card2) != true)
       return;
     
     //Remove the cards by traversing the list
-    TableNode prev = head;
-    TableNode curr = prev.getNext();
+    TableNode prev = null;
+    TableNode curr = head;
     
-    while ( curr.getNext() != null ) {
+    while ( curr != null ) {
       //Check if the current node's card is marked to be removed
-      Card temp = curr.getCard();
-      if (temp == card || temp == card1 || temp == card2) {
+      String temp = curr.getCard().toString();
+      if ( temp.equals(card) == true || temp.equals(card1) == true || temp.equals(card2) == true) {
         //Check if it will be a head insertion
-        if (prev == head) 
-          head = curr.getNext();
-        else
+        if (prev == null) {
+          curr = curr.getNext();
+          head = curr;
+        } //Else, it's a general body insertion. 
+        else {
           prev.setNext(curr.getNext());
+          curr = curr.getNext();
+        }
       }
-      //After checking, move each node reference down
-      prev = curr.getNext();
-      curr = prev.getNext();
+      //If the card doesn't match, just move down the list.
+      else {
+        prev = curr;
+        curr = curr.getNext();
+      }
     }
   }
   
-  private boolean allCardsPresent(Card givenCard, Card givenCard1, Card givenCard2) {
-    Card card = givenCard;
-    Card card1 = givenCard1;
-    Card card2 = givenCard2;
+  private boolean allCardsPresent(String givenCard, String givenCard1, String givenCard2) {
+    String card = givenCard;
+    String card1 = givenCard1;
+    String card2 = givenCard2;
     
     int count = 0;
     
     TableNode node = head;
-    while (node.getNext() != null) {
-      Card temp = node.getCard();
-      
-      if (temp.equals(card) == true || temp.equals(card1) == true || temp.equals(card2) == true )
+    while (node != null) {
+      String temp = node.getCard().toString();
+      if ( temp.equals(card) == true || temp.equals(card1) == true || temp.equals(card2) == true)
         count++;
       
       node = node.getNext();

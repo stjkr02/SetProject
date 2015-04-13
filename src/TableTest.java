@@ -132,4 +132,27 @@ public class TableTest extends TestCase {
     //Assert that nothing is on the table
     assertEquals(0, table.numCards());
   }
+  
+  public void testRemoveSetComplex() {
+    Table table = new Table();
+    Deck deck = new Deck("numSetsComplex.dat");
+    
+    while (deck.hasNext() == true) 
+      table.add(deck.getNext());
+    
+    //There should be 3 sets
+    assertEquals(3, table.numSets());
+    
+    //Remove a set
+    table.removeSet(new Card(1, 1, 1, 1), new Card(2, 1, 1, 1), new Card(3, 1, 1, 1));
+    
+    //Assert that there are only 5 cards left.
+    assertEquals(5, table.numCards());
+    
+    //Try to remove another set,
+    table.removeSet(new Card(1, 1, 1, 1), new Card(2, 2, 2, 2), new Card(3, 3, 3, 3));
+    //But to no avail
+    assertEquals(5, table.numCards());
+  }
+  
 }
