@@ -43,7 +43,14 @@ public class Game {
   
   
   public boolean isGameOver() {
+    //Check if there are sets on the table.
+    if (t.numSets()  != 0)
+      return false;
+    //Check if any cards remain in the deck.
+    if (d.hasNext() == true)
+      return false;
     
-    return false;
+    //If the method gets down here, then the game is over
+    return true;
   }
 }

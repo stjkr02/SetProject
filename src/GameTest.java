@@ -37,6 +37,13 @@ public class GameTest extends TestCase {
     assertEquals(12, game.numCards());
   }
   
-  public void 
-  
+  public void testIsGameOver() {
+    Game game = new Game("isGameOver.dat");
+    
+    //There are 4 cards on the table, none of them form a set, and no cards remain in deck; the game is over.
+    assertEquals(4, game.numCards());
+    assertEquals(0, game.numSets());
+    assertTrue(game.isGameOver());
+  }
+
 }
