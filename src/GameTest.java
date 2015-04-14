@@ -17,6 +17,7 @@ public class GameTest extends TestCase {
     //This test will test the Game(String), the numSets(), the numCards() methods.
     Game game = new Game("3card.dat");
     
+    //This data file only has 3 cards, and they form a set.
     assertEquals(3, game.numCards());
     assertEquals(1, game.numSets());
     
@@ -25,6 +26,17 @@ public class GameTest extends TestCase {
   public void testStringConstructorMoreThan12Cards() {
     Game game = new Game("MoreThan12Cards.dat");
     
+    //Assert that only 12 cards were added when the deck (constructed from a dat file) has more than 12 cards.
     assertEquals(12, game.numCards());
   }
+  
+  public void testEmptyConstructor() {
+    Game game = new Game();
+    
+    //Assert that only 12 cards were added when a new game was constructed.
+    assertEquals(12, game.numCards());
+  }
+  
+  public void 
+  
 }

@@ -33,11 +33,11 @@ public class Table {
       //Check if the current node's card is marked to be removed
       Card temp = curr.getCard();
       if ( temp.equals(givenCard) == true || temp.equals(givenCard1) == true || temp.equals(givenCard2) == true) {
-        //Check if it will be a head insertion
+        //Check if it will be a head removal.
         if (prev == null) {
           curr = curr.getNext();
           head = curr;
-        } //Else, it's a general body insertion. 
+        } //Else, it's a general body removal. 
         else {
           prev.setNext(curr.getNext());
           curr = curr.getNext();
