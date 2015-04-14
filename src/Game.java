@@ -38,6 +38,16 @@ public class Game {
   
   
   public void playRound() {
+    //Check, and stop, if the game is over (i.e. No sets can be removed and the deck is exhausted).
+    if ( isGameOver() == true)
+      return;
+    
+    //Notes:
+    //Check if there are any sets on the table.
+    //Remove that set (if applicable)
+    
+    //Check if table had more than 12 cards.
+    //Add 3 cards as necessary
     
   }
   
