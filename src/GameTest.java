@@ -46,4 +46,49 @@ public class GameTest extends TestCase {
     assertTrue(game.isGameOver());
   }
 
+  public void test2SetGamePlayRound() {
+    Game game = new Game("2SetGame.dat");
+    
+    //Start with 6 cards, which form 2 sets, in total
+    assertEquals(6, game.numCards());
+    assertEquals(2, game.numSets());
+    
+    //Remove a set
+    game.playRound();
+    
+    //There should be 3 cards, and 1 set remaining
+    assertEquals(3, game.numCards());
+    assertEquals(1, game.numSets());
+    
+    //Remove the last set
+    game.playRound();
+    
+    //Game should be over
+    assertTrue(game.isGameOver());
+  }
+  
+  public void test15CardDeck() {
+    //This will test that a deck with more than 12 cards will add at least 3 cards
+    Game game = new Game("16CardGame.dat");
+    
+    //Game should start with 12 cards
+    assertEquals(12, game.numCards());
+    //Make sure there are at least 2 sets in this deck.
+    assertTrue(game.numSets() >= 2);
+    
+    
+    //Remove a set
+    game.playRound();
+    
+    //Check that there are 12 cards on the table.
+    assertEquals(12, game.numCards());
+    
+    //Remove another set
+    game.playRound();
+    
+    //Now there should be 10 cards on the table because the deck only had 16 cards total.
+    assertEquals(10, game.numCards());
+    
+    
+  }
 }
