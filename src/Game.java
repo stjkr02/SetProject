@@ -54,7 +54,7 @@ public class Game {
     removeASet(cards);
     
     //Check if table had more than 12 cards before adding cards.
-    //Add 3 cards if and only if there was less than 12 cards on the table to begin with.
+    //Add 3 cards if and only if there was at most 12 cards on the table to begin with.
     if (cards <= 12) {
       add3Cards();
     }
