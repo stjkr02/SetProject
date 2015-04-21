@@ -7,10 +7,8 @@ public class Game {
     d = new Deck();
   
     //Add cards to the table ensuring that only 12 cards are placed on the table
-    int i = 0;
-    while(i < 12) {
+    for ( int i = 0; i < 12; i++) {
       t.add(d.getNext());
-      i++;
     }
   }
  
@@ -39,12 +37,17 @@ public class Game {
   
   public void playRound() {
     //Check, and stop, if the game is over (i.e. No sets can be removed and the deck is exhausted).
-    if ( isGameOver() == true)
+    if (isGameOver() == true)
       return;
     
-    //If the method made it past that isGameOver() check, then there is a set to be removed, and (possibly) cards to be added.
-    
-    //Get the number of cards before removing a set..
+    //If the method made it past that isGameOver() check, then there is a set to be removed, and/or (possibly) cards to be added.
+    //Need to check if we only need to add cards versus removing a set and then adding cards
+    if (numSets() == 0) {
+      add3Cards();
+      return;
+    }
+      
+    //Get the number of cards before removing a set.
     int cards = numCards();
     
     //Remove a set
@@ -53,11 +56,7 @@ public class Game {
     //Check if table had more than 12 cards before adding cards.
     //Add 3 cards if and only if there was less than 12 cards on the table to begin with.
     if (cards <= 12) {
-      int i = 0;
-      while(d.hasNext() == true && i < 3) {
-        t.add(d.getNext());
-        i ++;
-      }
+      add3Cards();
     }
     
   }
@@ -80,6 +79,15 @@ public class Game {
     }
     return;
   }
+  
+  private void add3Cards() {
+    int i = 0;
+    while(d.hasNext() == true && i < 3) {
+      t.add(d.getNext());
+      i ++;
+    }
+  }
+  
   
   public boolean isGameOver() {
     //Check if there are sets on the table.
