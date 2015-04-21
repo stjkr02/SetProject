@@ -36,13 +36,16 @@ public class Game {
   
   
   public void playRound() {
+    //Query the number of Sets present on the table
+    int sets = numSets();
+
     //Check, and stop, if the game is over (i.e. No sets can be removed and the deck is exhausted).
-    if (isGameOver() == true)
+    if (isGameOver(sets) == true)
       return;
     
     //If the method made it past that isGameOver() check, then there is a set to be removed, and/or (possibly) cards to be added.
     //Need to check if we only need to add cards versus removing a set and then adding cards
-    if (numSets() == 0) {
+    if (sets == 0) {
       add3Cards();
       return;
     }
@@ -63,17 +66,16 @@ public class Game {
   
   
   private void removeASet(int givenCards) {
-    //Pass in the number of cards to check when the cards are finally removed
+    //Pass in the number of cards to establish the length of the for-loop
     int length = givenCards;
     
     for (int i = 0; i < length - 2; i++) {
       for (int j = i + 1; j < length - 1; j++) {
         for (int k = j + 1; k < length; k++) {
-          t.removeSet(t.getCard(i), t.getCard(j), t.getCard(k));
-          
-          //Return if any cards were removed as to only remove one set.
-          if (t.numCards() < length)
+          if(t.getCard(i).isSet(t.getCard(j), t.getCard(k)) == true) {
+            t.removeSet(t.getCard(i), t.getCard(j), t.getCard(k));
             return;
+          }
         }
       }
     }
@@ -92,6 +94,20 @@ public class Game {
   public boolean isGameOver() {
     //Check if there are sets on the table.
     if (t.numSets()  != 0)
+      return false;
+    //Check if any cards remain in the deck.
+    if (d.hasNext() == true)
+      return false;
+    
+    //If the method gets down here, then the game is over
+    return true;
+  }
+  
+  
+  //Private overload of isGameOver to improve efficiency
+  private boolean isGameOver(int givenNumSets) {
+    //Check if there are sets on the table.
+    if (givenNumSets != 0)
       return false;
     //Check if any cards remain in the deck.
     if (d.hasNext() == true)
