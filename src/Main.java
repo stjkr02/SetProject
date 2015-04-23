@@ -1,6 +1,6 @@
 public class Main {
   public static void main(String[] args) {
-    int numGames = 100;
+    int numGames = 10000000;
     long[] sums = {0L, 0L};
     
     //Run a bunch of games
